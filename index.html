@@ -21,7 +21,11 @@
         }
     </style>
 </head> 
+    
 <body> 
+    
+     <p>Your IP address is: <span id="ip-address"></span></p>
+    
     <div class="container"> 
         <h1>Счетчик Очков</h1> 
         <div class="score"> 
@@ -29,6 +33,14 @@
             <span>очков</span> 
         </div> 
     </div> 
+
+    <script>
+        fetch('https://api64.ipify.org?format=json')
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById('ip-address').textContent = data.ip;
+        });
+    </script>
 
     <script>
         const scoreValue = document.getElementById('score-value'); 
