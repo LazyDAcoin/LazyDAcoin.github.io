@@ -1,20 +1,51 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Счетчик Очков</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <div class="container">
-        <h1>Счетчик Очков</h1>
-        <div class="score">
-            <span id="score-value">0</span>
-            <span>очков</span>
-        </div>
-    </div>
+<!DOCTYPE html> 
+<html lang="ru"> 
+<head> 
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>Счетчик Очков</title> 
+    <link rel="stylesheet" href="style.css"> 
+    <style>
+        .container { 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            justify-content: center; 
+            height: 100vh; 
+            font-family: sans-serif; 
+        } 
 
-    <script src="script.js"></script>
-</body>
+        .score { 
+            font-size: 2em; 
+            margin-top: 20px; 
+        }
+    </style>
+</head> 
+<body> 
+    <div class="container"> 
+        <h1>Счетчик Очков</h1> 
+        <div class="score"> 
+            <span id="score-value">0</span> 
+            <span>очков</span> 
+        </div> 
+    </div> 
+
+    <script>
+        const scoreValue = document.getElementById('score-value'); 
+        let score = 0; 
+
+        // Проверяем, есть ли сохраненные очки 
+        if (localStorage.getItem('score')) { 
+            score = parseInt(localStorage.getItem('score')); 
+            scoreValue.textContent = score; 
+        } 
+
+        // Интервал обновления очков 
+        setInterval(() => { 
+            score++; 
+            scoreValue.textContent = score; 
+            localStorage.setItem('score', score); // Сохраняем очки в localStorage 
+        }, 60000); // Обновление каждые 60 секунд (1 минута)
+    </script> 
+</body> 
 </html>
